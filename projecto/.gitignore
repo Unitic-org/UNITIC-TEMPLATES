@@ -1,5 +1,5 @@
-# templates_store
-# *.zip
+templates_store
+*.zip
 *.tar.gz
 .pyc
 __pycache__/

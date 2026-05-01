@@ -12,21 +12,24 @@ templates_db = [
         "name": "Barber Pro Landing",
         "description": "Landing page para barbearias",
         "price": 25,
-        "preview_url": "/static/barber-preview.html"
+        "preview_url": "/static/barber-preview.html",
+        "file": "barber-preview.zip"
     },
     {
         "id": 2,
         "name": "Pizza Express Landing",
         "description": "Landing page para pizzarias",
         "price": 25,
-        "preview_url": "/static/pizza-preview.html"
+        "preview_url": "/static/pizza-preview.html",
+        "file": "pizza-preview.zip"
     },
     {
         "id": 3,
         "name": "Clinic Cabando",
         "description": "Landing page para clínicas",
         "price": 30,
-        "preview_url": "/static/clinic-preview.html"
+        "preview_url": "/static/clinic-preview.html",
+        "file": "clinic-preview.zip"
     },
     {
         "id": 4,
