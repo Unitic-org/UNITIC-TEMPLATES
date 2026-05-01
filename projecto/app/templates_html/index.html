@@ -1,25 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Templates</title>
-
+    <title>Sites que Vendem</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f9fafb;
+        }
 
-    <link rel="stylesheet" href="/static/style.css">
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(120deg, #111, #333);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+        }
+
+        .btn {
+            background: #25D366;
+            padding: 15px 30px;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .price {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
 </head>
+
 <body>
 
-<h1>Templates de Landing Pages</h1>
+<div class="hero">
+    <h1>Landing Pages que Geram Clientes</h1>
+    <p>Compra, edita e começa a vender hoje</p>
+    <br>
+    <a class="btn" href="#templates">Ver Templates</a>
+</div>
 
-<div class="grid">
-    {% for t in templates %}
-    <div class="card">
-        <h2>{{ t.name }}</h2>
-        <p>{{ t.description }}</p>
-        <a href="/template/{{ t.id }}">Ver</a>
+<div class="container" id="templates">
+    <h2>Templates Disponíveis</h2>
+
+    <div class="grid">
+        {% for t in templates %}
+        <div class="card">
+            <img src="https://via.placeholder.com/400x200">
+
+            <div class="card-content">
+                <h3>{{ t.name }}</h3>
+                <p>{{ t.description }}</p>
+                <div class="price">${{ t.price }}</div>
+
+                <br>
+                <a href="/template/{{ t.id }}">Ver detalhes</a>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 
 </body>
