@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <!-- A UNITIC Temlate -->
+  <title>Business Startup | Template Design</title>
+  <!-- Bootstrap 5 CSS + ícones -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <!-- Google Fonts para um visual moderno -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1e1e2f;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    .logo-placeholder {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      color: #0d6efd;
+      line-height: 1.2;
+    }
+    .navbar {
+      background-color: #ffffff;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      padding: 1rem 0;
+    }
+    .hero-section {
+      background: linear-gradient(135deg, #f4f7fc 0%, #eef2f6 100%);
+      padding: 5rem 0 4rem;
+    }
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -1px;
+      color: #0b0f2b;
+    }
+    .hero-subtext {
+      font-size: 1.25rem;
+      color: #4a4a68;
+      margin: 1.5rem 0 2rem;
+      max-width: 550px;
+    }
+    .btn-primary-custom {
+      background-color: #0d6efd;
+      border: none;
+      padding: 0.8rem 2.2rem;
+      font-weight: 600;
+      border-radius: 40px;
+      font-size: 1.1rem;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 18px rgba(13,110,253,0.25);
+    }
+    .btn-primary-custom:hover {
+      background-color: #0b5ed7;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 22px rgba(13,110,253,0.35);
+    }
+    .section-title {
+      font-weight: 700;
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      color: #0b0f2b;
+    }
+    .feature-icon {
+      font-size: 2.2rem;
+      color: #0d6efd;
+      background-color: rgba(13,110,253,0.08);
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+    }
+    .feature-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 20px 35px rgba(0,0,0,0.03);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0,0,0,0.02);
+      height: 100%;
+    }
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 40px rgba(0,0,0,0.06);
+      border-color: rgba(13,110,253,0.15);
+    }
+    .feature-card h5 {
+      font-weight: 650;
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+    }
+    .delivery-highlight {
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 25px 45px rgba(0,0,0,0.04);
+      margin-top: 2rem;
+      border: 1px solid #f0f0f5;
+    }
+    .lorem-text-muted {
+      color: #5b5b77;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+    footer {
+      background-color: #f8f9fc;
+      border-top: 1px solid #e9ecef;
+      padding: 2rem 0;
+      margin-top: 4rem;
+      color: #4a4a68;
+    }
+    .small-lorem {
+      font-size: 0.95rem;
+      color: #5e5e7a;
+    }
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      .hero-subtext {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar com logo -->
+  <nav class="navbar navbar-expand-lg bg-white py-3">
+    <div class="container">
+      <a class="navbar-brand logo-placeholder" href="#">
+        <i class="bi bi-hexagon-fill me-2" style="color:#0d6efd; font-size: 2rem; vertical-align: middle;"></i>YOU LOGO
+      </a>
+      <div class="d-none d-md-block">
+        <span class="text-secondary fw-semibold">BUSINESS</span>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarMenu">
+        <ul class="navbar-nav mb-2 mb-lg-0 align-items-center gap-2">
+          <li class="nav-item"><a class="nav-link fw-medium px-3" href="#">Início</a></li>
+          <li class="nav-item"><a class="nav-link fw-medium px-3" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link fw-medium px-3" href="#delivery">Delivery</a></li>
+          <li class="nav-item"><a class="btn btn-outline-primary rounded-pill px-4 ms-2 fw-semibold" href="#">Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero / Seção principal -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill fw-semibold mb-3">
+            <i class="bi bi-lightning-charge-fill me-1"></i> STARTUP WEBSITE
+          </span>
+          <h1 class="hero-title mt-2">DESIGN<br>TEMPLATE</h1>
+          <p class="hero-subtext">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna.
+          </p>
+          <button class="btn btn-primary-custom btn-lg" id="getStartedBtn">
+            Get started <i class="bi bi-arrow-right-short ms-2"></i>
+          </button>
+          <div class="mt-4 d-flex align-items-center gap-3 flex-wrap">
+            <div class="d-flex align-items-center">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>
+              <span class="small-lorem">Lorem ipsum dolor</span>
+            </div>
+            <div class="d-flex align-items-center">
+              <i class="bi bi-check-circle-fill text-success me-2"></i>
+              <span class="small-lorem">Consectetuer adipiscing</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="bg-white rounded-4 p-4 shadow-sm d-flex align-items-center justify-content-center" style="min-height: 320px;">
+            <div class="text-center">
+              <i class="bi bi-building display-3 text-primary opacity-75"></i>
+              <p class="mt-3 fw-semibold text-secondary">STARTUPWEBSITE</p>
+              <p class="small-lorem">Lorem ipsum dolor sit amet, consectetuer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES Section -->
+  <section id="features" class="py-5 mt-4">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">FEATURES</h2>
+        <p class="text-secondary fs-5">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
+      </div>
+      
+      <!-- Linha 1: 4 cards LOREMIPSUM (conforme template) -->
+      <div class="row g-4 mb-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card text-center">
+            <div class="feature-icon mx-auto">
+              <i class="bi bi-grid-1x2-fill"></i>
+            </div>
+            <h5>LOREMIPSUM</h5>
+            <p class="lorem-text-muted">Lorem ipsum dolor sit amet, consectetuer adipisc</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card text-center">
+            <div class="feature-icon mx-auto">
+              <i class="bi bi-layers-fill"></i>
+            </div>
+            <h5>LOREMIPSUM</h5>
+            <p class="lorem-text-muted">Lorem ipsum dolor sit amet, consectetuer adipisc</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card text-center">
+            <div class="feature-icon mx-auto">
+              <i class="bi bi-cpu-fill"></i>
+            </div>
+            <h5>LOREMIPSUM</h5>
+            <p class="lorem-text-muted">Lorem ipsum dolor sit amet, consectetuer adipiso</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-card text-center">
+            <div class="feature-icon mx-auto">
+              <i class="bi bi-shield-shaded"></i>
+            </div>
+            <h5>LOREMIPSUM</h5>
+            <p class="lorem-text-muted">Lorem ipsum dolor sit amet, consectetuer adipisc</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Linha 2: Combina os textos originais (LOREMIPSUM + DELIVERY) -->
+      <div class="row g-4 align-items-stretch">
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="bi bi-rocket-takeoff-fill"></i>
+            </div>
+            <h5>LOREMIPSUM</h5>
+            <p class="lorem-text-muted">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="bi bi-truck-front-fill"></i>
+            </div>
+            <h5>DELIVERY</h5>
+            <p class="lorem-text-muted">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="bi bi-chat-dots-fill"></i>
+            </div>
+            <h5>LOREMIPSUM</h5>
+            <p class="lorem-text-muted">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Linha adicional com os dois últimos LOREMIPSUM que aparecem no template -->
+      <div class="row g-4 mt-2">
+        <div class="col-md-6">
+          <div class="feature-card d-flex flex-column flex-md-row align-items-center gap-3">
+            <div class="feature-icon mb-0 mx-auto mx-md-0">
+              <i class="bi bi-brush-fill"></i>
+            </div>
+            <div>
+              <h5>LOREMIPSUM</h5>
+              <p class="lorem-text-muted mb-0">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="feature-card d-flex flex-column flex-md-row align-items-center gap-3">
+            <div class="feature-icon mb-0 mx-auto mx-md-0">
+              <i class="bi bi-gem"></i>
+            </div>
+            <div>
+              <h5>LOREMIPSUM</h5>
+              <p class="lorem-text-muted mb-0">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção DELIVERY destacada (extraída do texto) -->
+  <section id="delivery" class="py-4">
+    <div class="container">
+      <div class="delivery-highlight">
+        <div class="row align-items-center">
+          <div class="col-lg-7">
+            <span class="badge bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill fw-semibold mb-3">
+              <i class="bi bi-box-seam me-1"></i> DELIVERY
+            </span>
+            <h3 class="fw-bold mb-3" style="font-size: 2rem;">LOREMIPSUM DOLOR</h3>
+            <p class="lorem-text-muted fs-5">
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+            </p>
+            <ul class="list-unstyled mt-4">
+              <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i> Lorem ipsum dolor sit amet</li>
+              <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i> Consectetuer adipiscing elit</li>
+              <li><i class="bi bi-check2-circle text-primary me-2"></i> Sed diam nonummy nibh euismod</li>
+            </ul>
+          </div>
+          <div class="col-lg-5 text-center mt-4 mt-lg-0">
+            <div class="bg-light rounded-4 p-4 d-inline-block">
+              <i class="bi bi-truck display-2 text-primary"></i>
+              <p class="fw-semibold mt-2">LOREMIPSUM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bloco extra com os textos duplicados, conforme template original -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-4 text-center text-md-start">
+        <div class="col-md-6">
+          <div class="p-4 bg-white rounded-4 shadow-sm">
+            <h5 class="fw-bold">LOREMIPSUM</h5>
+            <p class="lorem-text-muted">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="p-4 bg-white rounded-4 shadow-sm">
+            <h5 class="fw-bold">LOREMIPSUM</h5>
+            <p class="lorem-text-muted">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <div class="d-flex justify-content-center align-items-center gap-2 mb-2">
+        <span class="logo-placeholder fs-5">YOU LOGO</span>
+        <span class="text-secondary">| BUSINESS</span>
+      </div>
+      <p class="small-lorem mb-1">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+      <p class="small text-secondary mb-0">© 2026 Startup Website Design Template</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS + pequeno script interativo -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Interação simples no botão "Get started"
+    document.addEventListener('DOMContentLoaded', function() {
+      const getStartedBtn = document.getElementById('getStartedBtn');
+      if (getStartedBtn) {
+        getStartedBtn.addEventListener('click', function() {
+          alert('🔥 Obrigado pelo interesse! Este é um template "Business Startup Website Design".');
+          // Rolagem suave para features como exemplo
+          document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+
+      // Ativar tooltips do Bootstrap (se houver)
+      const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+    });
+  </script>
+</body>
+</html>
