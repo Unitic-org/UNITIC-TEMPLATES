@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Templates</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>Templates de Landing Pages</h1>
+
+<div class="grid">
+    {% for t in templates %}
+    <div class="card">
+        <h2>{{ t.name }}</h2>
+        <p>{{ t.description }}</p>
+        <a href="/template/{{ t.id }}">Ver</a>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>
