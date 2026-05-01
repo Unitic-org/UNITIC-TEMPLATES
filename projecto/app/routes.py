@@ -23,14 +23,14 @@ templates_db = [
     },
     {
         "id": 3,
-        "name": "Clinic Vida+",
+        "name": "Clinic Cabando",
         "description": "Landing page para clínicas",
         "price": 30,
         "preview_url": "/static/clinic-preview.html"
     },
     {
         "id": 4,
-        "name": "Power Gym Landing",
+        "name": "Bravo Gym Landing",
         "description": "Landing page para academias",
         "price": 25,
         "preview_url": "/static/gym-preview.html"
