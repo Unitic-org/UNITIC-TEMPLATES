@@ -216,8 +216,46 @@
             const scroller = document.getElementById('templatesGrid')
             const leftBtn = document.getElementById('leftBtn')
             const rightBtn = document.getElementById('rightBtn')
-            leftBtn.addEventListener('click', ()=>{ scroller.scrollBy({left:-320,behavior:'smooth'}) })
-            rightBtn.addEventListener('click', ()=>{ scroller.scrollBy({left:320,behavior:'smooth'}) })
+            const scrollerDots = document.createElement('div')
+            scrollerDots.id = 'scrollerDots'
+            scrollerDots.className = 'dots'
+            scroller.parentNode.appendChild(scrollerDots)
+
+            // helper to center a card
+            function scrollToCard(card){
+                const left = card.offsetLeft - (scroller.clientWidth - card.offsetWidth)/2
+                scroller.scrollTo({left, behavior:'smooth'})
+            }
+
+            // build dots and wire clicks
+            const cards = Array.from(scroller.querySelectorAll('.card'))
+            cards.forEach((card, idx)=>{
+                const dot = document.createElement('div')
+                dot.className = 'dot'
+                dot.addEventListener('click', ()=> scrollToCard(card))
+                scrollerDots.appendChild(dot)
+            })
+
+            const dots = Array.from(scrollerDots.children)
+            function updateActive(){
+                const center = scroller.scrollLeft + scroller.clientWidth/2
+                let nearestIndex = 0; let nearestDist = Infinity
+                cards.forEach((c,i)=>{
+                    const cCenter = c.offsetLeft + c.offsetWidth/2
+                    const d = Math.abs(center - cCenter)
+                    if(d < nearestDist){ nearestDist = d; nearestIndex = i }
+                })
+                dots.forEach(d=>d.classList.remove('active'))
+                if(dots[nearestIndex]) dots[nearestIndex].classList.add('active')
+                return nearestIndex
+            }
+
+            leftBtn.addEventListener('click', ()=>{
+                const i = updateActive(); const prev = Math.max(0, i-1); scrollToCard(cards[prev])
+            })
+            rightBtn.addEventListener('click', ()=>{
+                const i = updateActive(); const next = Math.min(cards.length-1, i+1); scrollToCard(cards[next])
+            })
 
             // drag-to-scroll
             let isDown=false,startX,scrollLeft
@@ -225,6 +263,32 @@
             scroller.addEventListener('mouseleave', ()=>{ isDown=false; scroller.classList.remove('dragging') })
             scroller.addEventListener('mouseup', ()=>{ isDown=false; scroller.classList.remove('dragging') })
             scroller.addEventListener('mousemove', (e)=>{ if(!isDown) return; e.preventDefault(); const x=e.pageX - scroller.offsetLeft; const walk=(x-startX)*1.2; scroller.scrollLeft = scrollLeft - walk })
+
+            // update active dot during scroll
+            scroller.addEventListener('scroll', ()=>{ window.requestAnimationFrame(updateActive) })
+
+            // lazy-load images with IntersectionObserver
+            const imgs = scroller.querySelectorAll('img[data-src]')
+            const io = new IntersectionObserver((entries, obs)=>{
+                entries.forEach(en=>{
+                    if(en.isIntersecting){ const img = en.target; img.src = img.dataset.src; img.removeAttribute('data-src'); obs.unobserve(img) }
+                })
+            }, {root: scroller, rootMargin: '200px'})
+            imgs.forEach(i=>io.observe(i))
+
+            // autoplay: advance to next card every X ms
+            let autoplayInterval = null
+            function startAutoplay(){ if(autoplayInterval) return; autoplayInterval = setInterval(()=>{
+                    const i = updateActive(); const next = (i+1) % cards.length; scrollToCard(cards[next])
+            }, 3500)}
+            function stopAutoplay(){ if(autoplayInterval){ clearInterval(autoplayInterval); autoplayInterval = null }}
+            startAutoplay()
+
+            // pause on hover or when user interacts
+            scroller.addEventListener('mouseenter', stopAutoplay)
+            scroller.addEventListener('mouseleave', startAutoplay)
+            scrollerDots.addEventListener('mouseenter', stopAutoplay)
+            scrollerDots.addEventListener('mouseleave', startAutoplay)
         })
         </script>
 </body>
