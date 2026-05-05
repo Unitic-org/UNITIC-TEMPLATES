@@ -146,13 +146,26 @@
         </div>
     </div>
 
-    <script>
-    // Add entrance animation class after paint so items stagger nicely
-    window.addEventListener('load', ()=>{
-      const cards = document.querySelectorAll('#templatesGrid .card')
-      cards.forEach((c,i)=>setTimeout(()=>c.classList.add('visible'), i*80))
-    })
-    </script>
+        <script>
+        // Add entrance animation class after paint so items stagger nicely
+        window.addEventListener('load', ()=>{
+            const cards = document.querySelectorAll('#templatesGrid .card')
+            cards.forEach((c,i)=>setTimeout(()=>c.classList.add('visible'), i*80))
+
+            const scroller = document.getElementById('templatesGrid')
+            const leftBtn = document.getElementById('leftBtn')
+            const rightBtn = document.getElementById('rightBtn')
+            leftBtn.addEventListener('click', ()=>{ scroller.scrollBy({left:-320,behavior:'smooth'}) })
+            rightBtn.addEventListener('click', ()=>{ scroller.scrollBy({left:320,behavior:'smooth'}) })
+
+            // drag-to-scroll
+            let isDown=false,startX,scrollLeft
+            scroller.addEventListener('mousedown', (e)=>{ isDown=true; scroller.classList.add('dragging'); startX=e.pageX - scroller.offsetLeft; scrollLeft=scroller.scrollLeft })
+            scroller.addEventListener('mouseleave', ()=>{ isDown=false; scroller.classList.remove('dragging') })
+            scroller.addEventListener('mouseup', ()=>{ isDown=false; scroller.classList.remove('dragging') })
+            scroller.addEventListener('mousemove', (e)=>{ if(!isDown) return; e.preventDefault(); const x=e.pageX - scroller.offsetLeft; const walk=(x-startX)*1.2; scroller.scrollLeft = scrollLeft - walk })
+        })
+        </script>
 </body>
 </html>
 
