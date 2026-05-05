@@ -51,12 +51,14 @@
             padding: 40px 20px;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
-            margin-top:18px;
+        /* horizontal scroller */
+        .scroller-wrap{position:relative;margin-top:18px}
+        .scroller{
+            display:flex;gap:20px;overflow-x:auto;padding:18px 8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
         }
+        .scroller::-webkit-scrollbar{height:10px}
+        .scroller::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:8px}
+        .scroller .card{min-width:300px;flex:0 0 300px;scroll-snap-align:center}
 
         .card {
             background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
@@ -80,8 +82,11 @@
         .action-link:hover{background:rgba(21,208,214,0.06)}
 
         /* subtle staggered fade-in */
-        .grid .card{opacity:0;transform:translateY(6px) scale(.995)}
-        .grid .card.visible{opacity:1;transform:none;transition:opacity .45s ease,transform .45s cubic-bezier(.2,.9,.3,1)}
+        .scroller .card{opacity:0;transform:translateY(6px) scale(.995)}
+        .scroller .card.visible{opacity:1;transform:none;transition:opacity .45s ease,transform .45s cubic-bezier(.2,.9,.3,1)}
+
+        .arrow{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.35);border-radius:999px;padding:8px 10px;color:var(--accent);cursor:pointer}
+        .left-arrow{left:8px;right:auto}
 
         @media (max-width:800px){.hero{flex-direction:column;padding:28px}.hero-left{max-width:100%}.brand h4{display:none}}
     </style>
@@ -116,23 +121,28 @@
         <h2 style="margin:0 0 8px 0;color:#cfeaf0">Templates Disponíveis</h2>
         <p style="color:var(--muted);margin:0 0 20px 0">Escolha um layout pronto — personalize e comece a vender.</p>
 
-        <div class="grid" id="templatesGrid">
-            {% for t in templates %}
-            <div class="card">
-                <div class="card-media" style="background-image:url('https://via.placeholder.com/800x400/0a1b2f/15d0d6?text=Template+{{ t.id }}')"></div>
+        <div class="scroller-wrap">
+            <div class="scroller" id="templatesGrid">
+                {% for t in templates %}
+                <div class="card">
+                    <div class="card-media" style="background-image:url('https://via.placeholder.com/900x520/0a1b2f/15d0d6?text=Template+{{ t.id }}')"></div>
 
-                <div class="card-content">
-                    <h3>{{ t.name }}</h3>
-                    <p>{{ t.description }}</p>
-                    <div class="price">${{ t.price }}</div>
+                    <div class="card-content">
+                        <h3>{{ t.name }}</h3>
+                        <p>{{ t.description }}</p>
+                        <div class="price">${{ t.price }}</div>
 
-                    <div class="actions">
-                        <a class="action-link" href="/template/{{ t.id }}">Ver detalhes</a>
-                        <a class="action-link" href="{{ t.preview_url }}" target="_blank">Preview</a>
+                        <div class="actions">
+                            <a class="action-link" href="/template/{{ t.id }}">Ver detalhes</a>
+                            <a class="action-link" href="{{ t.preview_url }}" target="_blank">Preview</a>
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
+
+            <div class="arrow left-arrow" id="leftBtn">◀</div>
+            <div class="arrow" id="rightBtn">▶</div>
         </div>
     </div>
 
