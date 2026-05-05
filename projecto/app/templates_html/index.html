@@ -143,22 +143,24 @@
 
         <div class="scroller-wrap">
             <div class="scroller" id="templatesGrid">
-                {% for t in templates %}
-                <div class="card">
-                    <div class="card-media" style="background-image:url('https://via.placeholder.com/900x520/0a1b2f/15d0d6?text=Template+{{ t.id }}')"></div>
+                    {% for t in templates %}
+                    <div class="card" data-id="{{ t.id }}">
+                        <div class="card-media">
+                            <img loading="lazy" data-src="https://via.placeholder.com/900x520/0a1b2f/15d0d6?text=Template+{{ t.id }}" alt="{{ t.name }} preview">
+                        </div>
 
-                    <div class="card-content">
-                        <h3>{{ t.name }}</h3>
-                        <p>{{ t.description }}</p>
-                        <div class="price">${{ t.price }}</div>
+                        <div class="card-content">
+                            <h3>{{ t.name }}</h3>
+                            <p>{{ t.description }}</p>
+                            <div class="price">${{ t.price }}</div>
 
-                        <div class="actions">
-                            <a class="action-link" href="/template/{{ t.id }}">Ver detalhes</a>
-                            <a class="action-link" href="{{ t.preview_url }}" target="_blank">Preview</a>
+                            <div class="actions">
+                                <a class="action-link" href="/template/{{ t.id }}">Ver detalhes</a>
+                                <a class="action-link" href="{{ t.preview_url }}" target="_blank">Preview</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                {% endfor %}
+                    {% endfor %}
             </div>
 
             <div class="arrow left-arrow" id="leftBtn">◀</div>
