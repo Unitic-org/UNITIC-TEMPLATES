@@ -1,101 +1,485 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Barbearia Elite</title>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ManCut | Barbearia Premium</title>
+        
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+        <style>
+            :root {
+                --primary-color: #1a1a1a;
+                --accent-color: #d4a13e; /* Dourado estilo barbearia */
+                --light-bg: #f8f9fa;
+                --text-light: #fff;
+            }
+
+            body {
+                font-family: 'Montserrat', sans-serif;
+                overflow-x: hidden;
+            }
+
+            h1, h2, h3, h4, .logo-text {
+                font-family: 'Oswald', sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            /* --- NAVBAR --- */
+            .navbar {
+                background-color: rgba(26, 26, 26, 0.95);
+                backdrop-filter: blur(5px);
+                transition: all 0.4s ease;
+                padding: 15px 0;
+            }
+
+            .navbar-brand {
+                font-size: 2rem;
+                color: var(--text-light) !important;
+                letter-spacing: 3px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .navbar-brand i {
+                color: var(--accent-color);
+            }
+
+            .nav-link {
+                color: #ccc !important;
+                margin: 0 10px;
+                position: relative;
+                transition: color 0.3s;
+            }
+
+            .nav-link:hover, .nav-link.active {
+                color: var(--accent-color) !important;
+            }
+
+            .btn-accent {
+                background-color: var(--accent-color);
+                color: #fff;
+                border: none;
+                padding: 10px 25px;
+                font-weight: 600;
+                border-radius: 0;
+                transition: all 0.3s;
+            }
+
+            .btn-accent:hover {
+                background-color: #b8922e;
+                transform: scale(1.05);
+            }
+
+            /* --- HERO SECTION (Vídeo BG) --- */
+            #home {
+                height: 100vh;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                text-align: center;
+                overflow: hidden;
 
 
-    <style>
-        body {
-            font-family: Arial;
-            margin: 0;
-        }
+                background: url(https://images.unsplash.com/photo-1747833305853-d43937d88971?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80) no-repeat  center / cover;
+                
+            }
 
-        header {
-            background: black;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+            #home .video-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: -2;
+                filter: brightness(0.4); /* Escurecer para legibilidade */
+            }
 
-        .hero {
-            padding: 60px;
-            text-align: center;
-            background: #f4f4f4;
-        }
+            .hero-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.3);
+                z-index: -1;
+            }
 
-        .btn {
-            background: green;
-            color: white;
-            padding: 15px;
-            text-decoration: none;
-        }
+            .hero-content h1 {
+                font-size: 5rem;
+                text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+                animation: fadeInUp 1s ease-out;
+            }
 
-        .section {
-            padding: 40px;
-            text-align: center;
-        }
+            .hero-content p {
+                font-size: 1.2rem;
+                margin-bottom: 30px;
+                animation: fadeInUp 1.2s ease-out;
+            }
 
+            /* --- SECTIONS GERAIS --- */
+            section {
+                padding: 80px 0;
+            }
 
+            .section-title {
+                font-size: 3rem;
+                margin-bottom: 20px;
+                position: relative;
+                display: inline-block;
+            }
 
+            .section-title::after {
+                content: '';
+                display: block;
+                width: 60px;
+                height: 4px;
+                background: var(--accent-color);
+                margin: 10px auto 0;
+            }
 
+            .service-card {
+                background: white;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+                transition: transform 0.3s, box-shadow 0.3s;
+                border: none;
+                text-align: center;
+                padding: 30px;
+                height: 100%;
+            }
 
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: #f9fafb;
-            color: #1f2937;
-        }
+            .service-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            }
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 40px 20px;
-        }
+            .service-icon {
+                font-size: 3.5rem;
+                color: var(--accent-color);
+                margin-bottom: 20px;
+            }
 
-        .btn {
-            display: inline-block;
-            padding: 14px 28px;
-            background: #25D366;
-            color: white;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-        }
+            /* --- GALERIA --- */
+            .gallery-img {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+                transition: transform 0.4s;
+            }
 
-        .hero {
-            padding: 100px 20px;
-            text-align: center;
-        }
+            .gallery-item {
+                overflow: hidden;
+                margin-bottom: 20px;
+            }
 
+            .gallery-item:hover .gallery-img {
+                transform: scale(1.1);
+            }
 
-    </style>
-</head>
-<body>
+            /* --- CONTATO --- */
+            #contact {
+                background: var(--primary-color);
+                color: white;
+            }
 
-<header>
-    <h1>Barbearia Elite</h1>
-</header>
+            #contact input, #contact textarea {
+                border-radius: 0;
+                border: 1px solid #444;
+                background: transparent;
+                color: white;
+                padding: 15px;
+            }
 
-<div class="hero">
-    <h2>Cortes modernos para homens de estilo</h2>
-    <p>Atendimento rápido e profissional</p>
-    
-    <a class="btn" href="https://wa.me/244932740023">
-        Agendar pelo WhatsApp
-    </a>
-</div>
+            #contact input:focus, #contact textarea:focus {
+                background: rgba(255,255,255,0.1);
+                border-color: var(--accent-color);
+                box-shadow: none;
+                color: white;
+            }
 
-<div class="section">
-    <h2>Nossos Serviços</h2>
-    <p>Corte | Barba | Tratamento</p>
-</div>
+            /* --- FOOTER --- */
+            footer {
+                background: #000;
+                color: #888;
+                padding: 30px 0;
+                border-top: 3px solid var(--accent-color);
+            }
 
-<div class="section">
-    <h2>Depoimentos</h2>
-    <p>"Melhor barbearia da cidade!"</p>
-</div>
+            .social-icons a {
+                color: #888;
+                margin: 0 10px;
+                font-size: 1.2rem;
+                transition: color 0.3s;
+            }
 
-</body>
+            .social-icons a:hover {
+                color: var(--accent-color);
+            }
+
+            /* --- ANIMAÇÕES --- */
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .animated-section {
+                opacity: 0;
+                transform: translateY(40px);
+                transition: all 0.8s ease-out;
+            }
+
+            .animated-section.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* --- RESPONSIVIDADE --- */
+            @media (max-width: 768px) {
+                .hero-content h1 { font-size: 3rem; }
+                .navbar-brand { font-size: 1.5rem; }
+                .section-title { font-size: 2.2rem; }
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <i class="fas fa-cut"></i> ManCut
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#services">Serviços</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#gallery">Galeria</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
+                    </ul>
+                    <a href="#contact" class="btn btn-accent ms-lg-3">Agendar</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- HOME / HERO -->
+        <section id="home">
+            <!-- YouTube Video Background -->
+
+            <!-- <img src="https://images.unsplash.com/photo-1606198764969-2c74775eb00c??ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"   > -->
+            
+            
+            <div class="hero-overlay"></div>
+
+            <div class="container hero-content">
+                <h1>Estilo & Atitude</h1>
+                <p>Agende seu corte e tenha a melhor experiência da cidade.</p>
+                <a href="#contact" class="btn btn-accent btn-lg">Marque Já</a>
+            </div>
+        </section>
+
+        <!-- SOBRE (Rápido) -->
+        <section id="about" class="bg-light">
+            <div class="container text-center animated-section">
+                <h2 class="section-title">Sobre Nós</h2>
+                <p class="lead mx-auto" style="max-width: 700px;">
+                    Na <strong>ManCut</strong>, a tradição encontra o estilo moderno. Nossos barbeiros são especializados em técnicas clássicas e tendências atuais para garantir que você saia daqui confiante.
+                </p>
+            </div>
+        </section>
+
+        <!-- SERVIÇOS -->
+        <section id="services">
+            <div class="container animated-section">
+                <h2 class="section-title text-center">Nossos Serviços</h2>
+                <div class="row mt-5 g-4">
+                    <div class="col-md-4">
+                        <div class="service-card">
+                            <div class="service-icon"><i class="fas fa-cut"></i></div>
+                            <h4>Corte de Cabelo</h4>
+                            <p>Cortes modernos, degradês e estilo clássico com tesoura ou máquina.</p>
+                            <span class="badge bg-dark">R$ 45,00</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="service-card">
+                            <div class="service-icon"><i class="fas fa-user-secret"></i></div>
+                            <h4>Barba</h4>
+                            <p>Aparelho, navalha e toalha quente para um acabamento perfeito.</p>
+                            <span class="badge bg-dark">R$ 35,00</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="service-card">
+                            <div class="service-icon"><i class="fas fa-spray-can"></i></div>
+                            <h4>Combo</h4>
+                            <p>Pacote completo: Cabelo + Barba + Hidratação.</p>
+                            <span class="badge bg-dark">R$ 70,00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALERIA -->
+        <section id="gallery" class="bg-light">
+            <div class="container animated-section">
+                <h2 class="section-title text-center">Galeria</h2>
+                <div class="row mt-4">
+                    <div class="col-md-4 gallery-item">
+                        <img src="https://images.unsplash.com/photo-1654097800369-abc063d657c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="gallery-img" alt="Corte 1">
+                    </div>
+                    <div class="col-md-4 gallery-item">
+                        <img src="https://images.unsplash.com/photo-1593702275687-f8b402bf1fb5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="gallery-img" alt="Corte 2">
+                    </div>
+                    <div class="col-md-4 gallery-item">
+                        <img src="https://images.unsplash.com/photo-1593269244684-3f9c90ddf5a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="gallery-img" alt="Barba">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTATO -->
+        <section id="contact">
+            <div class="container animated-section">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <h2 class="section-title text-white">Fale Conosco</h2>
+                        <p class="text-light mb-4">Agende seu horário ou tire suas dúvidas. Estamos prontos para atendê-lo.</p>
+                        <ul class="list-unstyled text-light">
+                            <li class="mb-2"><i class="fas fa-map-marker-alt text-warning me-2"></i> Rua dos Barbeiros, 123 - Centro</li>
+                            <li class="mb-2"><i class="fas fa-phone text-warning me-2"></i> (11) 99999-9999</li>
+                            <li class="mb-2"><i class="fas fa-envelope text-warning me-2"></i> contato@mancut.com</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" placeholder="Seu Nome" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="email" class="form-control" placeholder="Seu Email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Assunto">
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="4" placeholder="Mensagem" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-accent w-100">Enviar Mensagem</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <div class="logo-text mb-3 mb-md-0">
+                    <i class="fas fa-cut text-warning"></i> ManCut
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <small>&copy; 2026 ManCut. Todos os direitos reservados. <br> <em>A <a style="text-decoration: none; color: gainsboro;" href="https://unitic.site"   >UNITIC</a> Template.</em></small>
+            </div>
+        </footer>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Custom JS -->
+        <script>
+            // 1. Lógica do Navbar (Scrolling)
+            const nav = document.querySelector('.navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    nav.style.padding = '10px 0';
+                    nav.style.backgroundColor = 'rgba(0,0,0,0.98)';
+                } else {
+                    nav.style.padding = '15px 0';
+                    nav.style.backgroundColor = 'rgba(26, 26, 26, 0.95)';
+                }
+            });
+
+            // 2. Scroll Suave
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // 3. Ativar link no scroll
+            const sections = document.querySelectorAll('section');
+            const navLi = document.querySelectorAll('.navbar-nav .nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLi.forEach(a => {
+                    a.classList.remove('active');
+                    if (a.getAttribute('href') === `#${current}`) {
+                        a.classList.add('active');
+                    }
+                });
+            });
+
+            // 4. Animação de Scroll (Intersection Observer)
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.animated-section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // 5. Validação simples de Formulário
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Obrigado pelo contato! Entraremos em contato em breve.');
+                this.reset();
+            });
+        </script>
+    </body>
 </html>

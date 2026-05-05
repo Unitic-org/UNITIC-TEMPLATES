@@ -1,74 +1,414 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Clínica Cabando</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-
-    <style>
-        body { margin:0; font-family: Arial; }
-        header { background:#2c3e50; color:white; padding:20px; text-align:center; }
-        .hero { padding:80px; text-align:center; background:#ecf0f1; }
-        .btn { background:#3498db; padding:15px 25px; color:white; text-decoration:none; }
-        .section { padding:40px; text-align:center; }
-
-
-
-
-
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: #f9fafb;
-            color: #1f2937;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 40px 20px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 28px;
-            background: #25D366;
-            color: white;
-            border-radius: 8px;
-            text-decoration: none;
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <title>Cabando Dental Care | Sorrisos Saudáveis</title>
+        <!-- Tailwind CSS + Font Awesome + Google Fonts -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+        <!-- AOS Library para animações suaves -->
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <style>
+            * {
+            font-family: 'Inter', sans-serif;
+            }
+            body {
+            background: #fafcf8;
+            overflow-x: hidden;
+            }
+            /* transição suave para links e botões */
+            .nav-link, .btn-hover {
+            transition: all 0.2s ease-in-out;
+            }
+            .btn-hover:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2);
+            }
+            /* video overlay escuro para legibilidade */
+            .video-overlay {
+            background: rgba(0, 20, 10, 0.55);
+            }
+            /* cards com efeito flutuante */
+            .floating-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .floating-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 35px -12px rgba(0,0,0,0.2);
+            }
+            /* scroll custom */
+            ::-webkit-scrollbar {
+            width: 8px;
+            }
+            ::-webkit-scrollbar-track {
+            background: #e9ecef;
+            }
+            ::-webkit-scrollbar-thumb {
+            background: #2c7a4d;
+            border-radius: 10px;
+            }
+            /* botão book now glow */
+            .btn-glow {
+            box-shadow: 0 0 8px rgba(44, 122, 77, 0.4);
+            }
+            .active-nav {
+            border-bottom: 2px solid #2c7a4d;
+            color: #2c7a4d;
             font-weight: 600;
+            }
+            /* para que o video background fique coberto mas com aspecto suave */
+            .hero-video-bg {
+            position: relative;
+            overflow: hidden;
+            }
+            .hero-video-bg iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            }
+            /* responsividade do iframe youtube */
+            .video-bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+
+
+            background: url(https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80) no-repeat  center / cover;
+            }
+            .video-bg-container iframe {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+            }
+            @media (min-aspect-ratio: 16/9) {
+            .video-bg-container iframe { height: 300%; top: -100%; }
+            }
+            @media (max-aspect-ratio: 16/9) {
+            .video-bg-container iframe { width: 300%; left: -100%; }
+            }
+        </style>
+    </head>
+    <body class="antialiased">
+
+    <!-- ===================== SPA Simples: Navegação entre páginas (sem recarregar) ===================== -->
+    <div id="app" class="flex flex-col min-h-screen">
+        
+        <!-- NAVBAR FIXA com transparencia/hover -->
+        <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-5 lg:px-8 py-3 flex flex-wrap items-center justify-between">
+            <!-- Logo / Brand -->
+            <div class="flex items-center space-x-2" data-aos="fade-right" data-aos-duration="600">
+            <i class="fas fa-tooth text-3xl text-emerald-700"></i>
+            <span class="font-bold text-2xl tracking-tight text-gray-800">Cabando<span class="text-emerald-600"> Dental Care</span></span>
+            </div>
+            
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex space-x-6 text-gray-700 font-medium">
+            <a href="#" data-page="home" class="nav-link nav-item text-gray-800 hover:text-emerald-600 pb-1 transition">Home</a>
+            <a href="#" data-page="info" class="nav-link nav-item hover:text-emerald-600 pb-1 transition">Info</a>
+            <a href="#" data-page="dental" class="nav-link nav-item hover:text-emerald-600 pb-1 transition">Dental</a>
+            <a href="#" data-page="clinic" class="nav-link nav-item hover:text-emerald-600 pb-1 transition">Clínica</a>
+            <a href="#" data-page="contact" class="nav-link nav-item hover:text-emerald-600 pb-1 transition">Contact</a>
+            <a href="#" data-page="book" class="bg-emerald-700 text-white px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-emerald-800 transition btn-hover">Book Now</a>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+            <button id="mobileMenuBtn" class="text-gray-700 text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+            </div>
+        </div>
+        <!-- Mobile Menu (dropdown) -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 py-3 px-5 flex flex-col space-y-3 pb-5 transition-all">
+            <a href="#" data-page="home" class="nav-item-mobile block py-1 text-gray-700 hover:text-emerald-600 font-medium">Home</a>
+            <a href="#" data-page="info" class="nav-item-mobile block py-1 text-gray-700 hover:text-emerald-600">Info</a>
+            <a href="#" data-page="dental" class="nav-item-mobile block py-1 text-gray-700 hover:text-emerald-600">Dental</a>
+            <a href="#" data-page="clinic" class="nav-item-mobile block py-1 text-gray-700 hover:text-emerald-600">Clínica</a>
+            <a href="#" data-page="contact" class="nav-item-mobile block py-1 text-gray-700 hover:text-emerald-600">Contact</a>
+            <a href="#" data-page="book" class="bg-emerald-700 text-white text-center py-1.5 rounded-full">Book Now</a>
+        </div>
+        </header>
+
+        <!-- MAIN CONTENT dinâmico -->
+        <main id="main-content" class="flex-grow">
+        <!-- O conteúdo será injetado via JS -->
+        <div class="transition-all duration-500 fade-in"></div>
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="bg-gray-900 text-gray-300 py-8 mt-12">
+        <div class="container mx-auto px-5 text-center">
+            <div class="flex justify-center space-x-6 mb-4 text-2xl">
+            <a href="#" class="hover:text-emerald-400 transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="hover:text-emerald-400 transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-emerald-400 transition"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="hover:text-emerald-400 transition"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="text-sm">© 2025 Cabando Dental Care – Cuidado e tecnologia para o seu sorriso.</p>
+            <p class="text-xs text-gray-500 mt-2">Rua das Clínicas, 245 – Luanda | +244 923 456 789</p>
+        </div>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 20 });
+        
+        // --- Páginas dinâmicas com conteúdo completo (Home, Info, Dental, Clinic, Contact, Book) ---
+        const pages = {
+        home: `
+            <!-- Hero com video background YouTube -->
+            <div class="hero-video-bg relative text-white py-24 md:py-32 overflow-hidden">
+            <div class="video-bg-container">
+                <!-- <iframe src="https://www.youtube.com/embed/2hVePZ5CFNs?autoplay=1&mute=1&loop=1&playlist=2hVePZ5CFNs&controls=0&showinfo=0&rel=0&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>  -->
+            </div>
+            <div class="absolute inset-0 video-overlay"></div>
+            <div class="relative container mx-auto px-5 z-10 text-center" data-aos="fade-up">
+                <h1 class="text-5xl md:text-7xl font-bold drop-shadow-lg">Cabando Dental Care</h1>
+                <p class="text-xl md:text-2xl mt-4 max-w-2xl mx-auto opacity-95">Stay Healthy – Sorriso que inspira confiança</p>
+                <p class="mt-6 text-lg max-w-xl mx-auto">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <div class="mt-8 flex flex-wrap gap-4 justify-center">
+                <a href="#" data-page="book" class="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg transition transform hover:scale-105">Agendar Consulta</a>
+                <a href="#" data-page="info" class="bg-white/20 backdrop-blur-sm border border-white/40 hover:bg-white/30 px-8 py-3 rounded-full font-semibold transition">Saiba Mais</a>
+                </div>
+            </div>
+            </div>
+            
+            <!-- Search treatments bar -->
+            <div class="bg-white shadow-md -mt-6 relative z-20 mx-5 md:mx-auto max-w-3xl rounded-2xl p-2 flex items-center gap-2 border border-emerald-100">
+            <i class="fas fa-search text-emerald-500 ml-3"></i>
+            <input type="text" id="treatmentSearch" placeholder="Search treatments... (ex: clareamento, implante)" class="w-full p-3 outline-none rounded-xl text-gray-700">
+            <button id="searchBtnTreat" class="bg-emerald-600 text-white px-5 py-2 rounded-xl hover:bg-emerald-700 transition">Buscar</button>
+            </div>
+            
+            <!-- Serviços em destaque -->
+            <section class="container mx-auto px-5 py-16">
+            <div class="text-center mb-12" data-aos="fade-right">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Nossos <span class="text-emerald-600">Tratamentos</span></h2>
+                <div class="w-24 h-1 bg-emerald-500 mx-auto mt-3 rounded-full"></div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center floating-card" data-aos="flip-left">
+                <i class="fas fa-smile text-5xl text-emerald-500 mb-4"></i>
+                <h3 class="text-xl font-bold">Clareamento Dental</h3>
+                <p class="text-gray-600 mt-2">Tecnologia a laser, resultados rápidos e duradouros.</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center floating-card" data-aos="flip-left" data-aos-delay="100">
+                <i class="fas fa-tooth text-5xl text-emerald-500 mb-4"></i>
+                <h3 class="text-xl font-bold">Implantes & Próteses</h3>
+                <p class="text-gray-600 mt-2">Materiais de alta qualidade e precisão cirúrgica.</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-6 text-center floating-card" data-aos="flip-left" data-aos-delay="200">
+                <i class="fas fa-user-md text-5xl text-emerald-500 mb-4"></i>
+                <h3 class="text-xl font-bold">Ortodontia</h3>
+                <p class="text-gray-600 mt-2">Aparelhos estéticos e Invisalign, sorriso alinhado.</p>
+                </div>
+            </div>
+            </section>
+            
+            <!-- Citação com imagem de fundo -->
+            <div class="bg-fixed bg-cover bg-center py-20 mt-6 relative" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1606811971618-4486d14f3f99?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');">
+            <div class="container mx-auto px-5 text-center text-white">
+                <i class="fas fa-quote-left text-4xl opacity-70"></i>
+                <p class="text-2xl italic max-w-3xl mx-auto">“Cuidar do seu sorriso é cuidar da sua saúde e autoestima. Aqui na Cabando, cada paciente é único.”</p>
+                <p class="mt-4 font-semibold">— Dra. Jolinda Cabando, Diretora Clínica</p>
+            </div>
+            </div>
+        `,
+        
+        info: `
+            <section class="container mx-auto px-5 py-12">
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl p-8 md:p-12" data-aos="zoom-in">
+                <h1 class="text-4xl font-bold text-emerald-700 mb-4">Sobre Nós</h1>
+                <p class="text-gray-700 text-lg leading-relaxed">A <strong>Cabando Dental Care</strong> nasceu da paixão por proporcionar saúde bucal de excelência. Contamos com equipamentos de última geração e uma equipe multidisciplinar altamente qualificada.</p>
+                <div class="grid md:grid-cols-2 gap-8 mt-10">
+                <div><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Mais de 10 anos de experiência<br><i class="fas fa-check-circle text-emerald-500 mr-2 mt-3"></i> Atendimento humanizado<br><i class="fas fa-check-circle text-emerald-500 mr-2 mt-3"></i> Tecnologia CAD/CAM</div>
+                <div><i class="fas fa-star text-emerald-500 mr-2"></i> Clínica própria e moderna<br><i class="fas fa-star text-emerald-500 mr-2 mt-3"></i> Métodos minimamente invasivos<br><i class="fas fa-star text-emerald-500 mr-2 mt-3"></i> Planos de pagamento flexíveis</div>
+                </div>
+            </div>
+            <div class="mt-12 text-center" data-aos="fade-up">
+                <iframe class="rounded-2xl shadow-2xl w-full max-w-3xl mx-auto h-64 md:h-96" src="https://www.youtube.com/embed/8W5Jd_Xj1-Q?si=example" title="Clínica moderna" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            </section>
+        `,
+        
+        dental: `
+            <section class="container mx-auto px-5 py-12">
+            <div class="text-center mb-10" data-aos="fade-down"><h1 class="text-4xl font-bold text-gray-800">Tratamentos <span class="text-emerald-600">Especializados</span></h1></div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-2xl shadow-md" data-aos="flip-right"><i class="fas fa-microscope text-4xl text-emerald-600 mb-3"></i><h3 class="text-xl font-bold">Endodontia</h3><p>Tratamento de canal indolor com microscópio operatório.</p></div>
+                <div class="bg-white p-6 rounded-2xl shadow-md" data-aos="flip-right" data-aos-delay="50"><i class="fas fa-teeth-open text-4xl text-emerald-600 mb-3"></i><h3 class="text-xl font-bold">Periodontia</h3><p>Prevenção e tratamento de gengivite e periodontite.</p></div>
+                <div class="bg-white p-6 rounded-2xl shadow-md" data-aos="flip-right" data-aos-delay="100"><i class="fas fa-child text-4xl text-emerald-600 mb-3"></i><h3 class="text-xl font-bold">Odontopediatria</h3><p>Atendimento lúdico para crianças com máxima segurança.</p></div>
+                <div class="bg-white p-6 rounded-2xl shadow-md" data-aos="flip-right" data-aos-delay="150"><i class="fas fa-gem text-4xl text-emerald-600 mb-3"></i><h3 class="text-xl font-bold">Estética Dental</h3><p>Lentes de contato, facetas e clareamento de alto padrão.</p></div>
+                <div class="bg-white p-6 rounded-2xl shadow-md" data-aos="flip-right" data-aos-delay="200"><i class="fas fa-x-ray text-4xl text-emerald-600 mb-3"></i><h3 class="text-xl font-bold">Radiologia Digital</h3><p>Exames precisos com baixa radiação, diagnóstico rápido.</p></div>  
+                <div class="bg-white p-6 rounded-2xl shadow-md" data-aos="flip-right" data-aos-delay="250"><i class="fas fa-syringe text-4xl text-emerald-600 mb-3"></i><h3 class="text-xl font-bold">Odontologia do Esporte</h3><p>Protetores bucais personalizados e prevenção.</p></div>
+            </div>
+            <div class="mt-12 bg-emerald-50 rounded-2xl p-6 text-center"><p class="text-lg">🔍 Procurando um procedimento específico? Ligue ou faça o seu agendamento online.</p></div>
+            </section>
+        `,
+        
+        clinic: `
+            <section class="container mx-auto px-5 py-12">
+            <div class="flex flex-col md:flex-row gap-10 items-center">
+                <div class="flex-1" data-aos="fade-right"><img src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Clinica moderna" class="rounded-2xl shadow-2xl h-80 w-full object-cover"></div>
+                <div class="flex-1" data-aos="fade-left"><h2 class="text-3xl font-bold">Nossa estrutura</h2><p class="mt-3 text-gray-600">Salas equipadas com os mais modernos equipamentos, ambiente relaxante com aromaterapia, cadeiras ergonômicas e tecnologia de ponta para seu conforto e segurança.</p><ul class="mt-5 space-y-2"><li><i class="fas fa-wifi text-emerald-600"></i> Wi-Fi e entretenimento durante o tratamento</li><li><i class="fas fa-wheelchair"></i> Acessibilidade total</li><li><i class="fas fa-hand-holding-heart"></i> Equipe bilíngue e acolhedora</li></ul></div>
+            </div>
+            <div class="mt-16 grid md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white p-5 rounded-xl shadow"><i class="fas fa-clock text-3xl text-emerald-600"></i><h4 class="font-bold">Horário flexível</h4><p>Seg-Sáb 08h - 20h</p></div>
+                <div class="bg-white p-5 rounded-xl shadow"><i class="fas fa-map-marker-alt text-3xl text-emerald-600"></i><h4 class="font-bold">Localização central</h4><p>Edifício Medical, Kinaxixi, Luanda</p></div>
+                <div class="bg-white p-5 rounded-xl shadow"><i class="fas fa-ambulance text-3xl text-emerald-600"></i><h4 class="font-bold">Pronto Atendimento</h4><p>Emergências 24h com dentista plantonista</p></div>
+            </div>
+            </section>
+        `,
+        
+        contact: `
+            <section class="container mx-auto px-5 py-12">
+            <div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
+                <div class="grid md:grid-cols-2">
+                <div class="p-8 bg-emerald-50" data-aos="fade-right"><h2 class="text-3xl font-bold mb-6">Fale Connosco</h2><p><i class="fas fa-phone-alt text-emerald-700 w-6"></i> +244 923 456 789</p><p class="mt-2"><i class="fab fa-whatsapp text-emerald-700"></i> +244 944 321 098</p><p><i class="fas fa-envelope mt-3"></i> atendimento@cabandodental.ao</p><div class="mt-8"><iframe class="w-full h-48 rounded-xl" src="https://maps.google.com/maps?q=Luanda+Kinaxixi&t=&z=15&ie=UTF8&iwloc=&output=embed"  style="border:0;" allowfullscreen></iframe></div></div>
+                <div class="p-8" data-aos="fade-left"><h3 class="text-2xl font-semibold">Enviar mensagem</h3><form id="contactFormSimulate"><div class="mt-4"><input type="text" placeholder="Seu nome" class="w-full p-3 border rounded-xl"></div><div class="mt-3"><input type="email" placeholder="Email" class="w-full p-3 border rounded-xl"></div><div class="mt-3"><textarea rows="3" placeholder="Como podemos ajudar?" class="w-full p-3 border rounded-xl"></textarea></div><button type="button" onclick="alert('Mensagem enviada com sucesso! Entraremos em contato breve. Obrigado :)')" class="mt-4 bg-emerald-700 text-white px-6 py-2 rounded-full w-full hover:bg-emerald-800">Enviar</button></form></div>
+                </div>
+            </div>
+            </section>
+        `,
+        
+        book: `
+            <div class="bg-gradient-to-br from-emerald-50 to-white min-h-screen py-12">
+            <div class="container mx-auto px-5 max-w-2xl">
+                <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-10" data-aos="zoom-in-up">
+                <h1 class="text-4xl font-bold text-center text-gray-800 mb-2">📅 Reserve sua consulta</h1>
+                <p class="text-center text-gray-500 mb-8">Preencha os dados e nossa equipe confirmará o horário.</p>
+                <form id="bookingForm" class="space-y-5">
+                    <div><label class="block font-medium">Nome completo</label><input type="text" id="nome" class="w-full border border-gray-300 rounded-xl p-3 focus:ring-emerald-400" required></div>
+                    <div><label class="block font-medium">Telefone</label><input type="tel" id="telefone" class="w-full border rounded-xl p-3" required></div>
+                    <div><label class="block font-medium">Serviço desejado</label><select id="servico" class="w-full border rounded-xl p-3"><option>Clareamento</option><option>Implante</option><option>Ortodontia</option><option>Check-up geral</option></select></div>
+                    <div><label class="block font-medium">Data preferencial</label><input type="date" class="w-full border rounded-xl p-3"></div>
+                    <button type="submit" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-3 rounded-xl text-lg font-semibold transition transform hover:scale-[1.01]">Confirmar Reserva <i class="fas fa-arrow-right"></i></button>
+                </form>
+                <p class="text-xs text-center text-gray-400 mt-6">*Entraremos em contato em até 1 hora útil.</p>
+                </div>
+            </div>
+            </div>
+        `
+        };
+        
+        // Função para atualizar página ativa e highlight do menu
+        let currentPage = "home";
+        
+        function renderPage(pageId) {
+        const contentDiv = document.querySelector("#main-content");
+        if (!contentDiv) return;
+        if (pages[pageId]) {
+            contentDiv.innerHTML = pages[pageId];
+            currentPage = pageId;
+            // Reinicializar animações AOS para novos elementos
+            AOS.refresh();
+            // Reaplicar evento de busca na HOME (campo search)
+            if (pageId === "home") {
+            const searchBtn = document.getElementById("searchBtnTreat");
+            const searchInput = document.getElementById("treatmentSearch");
+            if (searchBtn && searchInput) {
+                const handleSearch = () => {
+                const term = searchInput.value.trim();
+                if(term) alert(`🔍 Resultados para "${term}": Entre em contato para agendar uma avaliação personalizada.`);
+                else alert("Digite um tratamento, ex: clareamento, implante");
+                };
+                searchBtn.onclick = handleSearch;
+                searchInput.onkeypress = (e) => { if(e.key === "Enter") handleSearch(); };
+            }
+            }
+            // Se página book, adicionar evento de submit
+            if (pageId === "book") {
+            const formBooking = document.getElementById("bookingForm");
+            if (formBooking) {
+                formBooking.onsubmit = (e) => {
+                e.preventDefault();
+                const nome = document.getElementById("nome")?.value;
+                if(nome) alert(`✅ Obrigado ${nome}, sua consulta foi pré-agendada! Entraremos em contato.`);
+                else alert("Por favor preencha o nome.");
+                };
+            }
+            }
+            // Rodar função de highlight do menu
+            updateActiveMenu(pageId);
+        } else {
+            contentDiv.innerHTML = `<div class="p-10 text-center"><h2>Página não encontrada</h2></div>`;
         }
-
-        .hero {
-            padding: 100px 20px;
-            text-align: center;
+        // scroll suave para topo
+        window.scrollTo({ top: 0, behavior: "smooth" });
         }
-
-
-    </style>
-</head>
-<body>
-
-<header>
-    <h1>Clínica Cabando</h1>
-</header>
-
-<div class="hero"  style="background:#f1f5f9;">
-    <h2>Cuidamos da sua saúde</h2>
-    <p>Atendimento profissional e humanizado</p>
-    <a class="btn" href="https://unitic.site">Marcar consulta</a>
-</div>
-
-<div class="section">
-    <h2>Especialidades</h2>
-    <p>Clínica Geral | Pediatria | Cardiologia</p>
-</div>
-
-<div class="section">
-    <h2>Confiança</h2>
-    <p>"Atendimento excelente!"</p>
-</div>
-
-</body>
+        
+        function updateActiveMenu(page) {
+        document.querySelectorAll(".nav-item").forEach(link => {
+            const pg = link.getAttribute("data-page");
+            if (pg === page) {
+            link.classList.add("active-nav");
+            } else {
+            link.classList.remove("active-nav");
+            }
+        });
+        document.querySelectorAll(".nav-item-mobile").forEach(link => {
+            const pg = link.getAttribute("data-page");
+            if (pg === page) {
+            link.classList.add("text-emerald-600", "font-bold");
+            } else {
+            link.classList.remove("text-emerald-600", "font-bold");
+            }
+        });
+        }
+        
+        function attachNavEvents() {
+        const links = document.querySelectorAll("[data-page]");
+        links.forEach(link => {
+            link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const page = link.getAttribute("data-page");
+            if (page) {
+                renderPage(page);
+                // Fechar menu mobile após click
+                const mobileMenuDiv = document.getElementById("mobileMenu");
+                if (mobileMenuDiv && !mobileMenuDiv.classList.contains("hidden")) {
+                mobileMenuDiv.classList.add("hidden");
+                }
+            }
+            });
+        });
+        // mobile menu toggle
+        const mobileBtn = document.getElementById("mobileMenuBtn");
+        const mobileMenuDiv = document.getElementById("mobileMenu");
+        if (mobileBtn && mobileMenuDiv) {
+            mobileBtn.addEventListener("click", () => {
+            mobileMenuDiv.classList.toggle("hidden");
+            });
+        }
+        }
+        
+        // init
+        renderPage("home");
+        attachNavEvents();
+        
+        // reattach para links que forem adicionados dinamicamente após render, mas como usamos delegation nos data-page via document, já funciona.
+        // também quando renderizar devemos re-ancorar eventos
+        const observer = new MutationObserver(() => {
+        attachNavEvents(); 
+        AOS.refresh();
+        });
+        observer.observe(document.getElementById("main-content"), { childList: true, subtree: true });
+        
+        // tratamento de pesquisa da home ao clicar já incluso dentro do render da home
+    </script>
+    </body>
 </html>

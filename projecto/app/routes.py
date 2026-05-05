@@ -19,7 +19,7 @@ templates_db = [
         "id": 2,
         "name": "Pizza Express Landing",
         "description": "Landing page para pizzarias",
-        "price": 25,
+        "price": 30,
         "preview_url": "/static/pizza-preview.html",
         "file": "pizza-preview.zip"
     },
@@ -27,7 +27,7 @@ templates_db = [
         "id": 3,
         "name": "Clinic Cabando",
         "description": "Landing page para clínicas",
-        "price": 30,
+        "price": 25,
         "preview_url": "/static/clinic-preview.html",
         "file": "clinic-preview.zip"
     },
@@ -42,8 +42,7 @@ templates_db = [
 
 @router.get("/", response_class=HTMLResponse)
 def home(request: Request):
-    return templates.TemplateResponse("index.html", {
-        "request": request,
+    return templates.TemplateResponse(request, "index.html", {
         "templates": templates_db
     })
 
@@ -51,7 +50,6 @@ def home(request: Request):
 def template_detail(request: Request, id: int):
     template = next((t for t in templates_db if t["id"] == id), None)
     
-    return templates.TemplateResponse("template_detail.html", {
-        "request": request,
+    return templates.TemplateResponse(request, "template_detail.html", {
         "template": template
     })
